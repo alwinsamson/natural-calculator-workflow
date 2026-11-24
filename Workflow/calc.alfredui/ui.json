@@ -1,0 +1,113 @@
+{
+  "bundleid": "com.alwinsamson.calculator",
+  "iconpath": "../icon.png",
+  "variablesconfig": {
+    "pad_text": {
+      "default": "rent = $1,450\ngroceries = $600\nutilities = $180\n\nmonthly = rent + groceries + utilities\nmonthly * 12\nmonthly in eur",
+      "persist": true
+    },
+    "pad_total": { "default": "" },
+    "pad_input": { "src": "args[0]" }
+  },
+  "colours": { "card": { "light": "#00000008", "dark": "#FFFFFF0D" } },
+  "window": {
+    "id": "padWindow",
+    "title": "Calculator Scratchpad",
+    "size": { "width": 760, "height": 480 },
+    "minsize": { "width": 480, "height": 280 },
+    "frameautosave": true,
+    "root": {
+      "shortcuts": [
+        { "shortcut": "⎋", "action": { "type": "function", "src": "padWindow", "args": "close" } },
+        { "shortcut": "⌘↩", "action": { "type": "json", "src": { "finish": { "args": "{var:pad_total}" } } } },
+        { "shortcut": "⌘K", "action": { "type": "json", "src": "components/actions_menu.json" } },
+        { "shortcut": "⌘⇧C", "action": { "type": "json", "src": { "copy": { "src": "{var:pad_lines}" } } } }
+      ],
+      "events": [{
+        "triggers": "launched",
+        "action": { "type": "script", "src": "scripts/pad",
+                    "args": [ "{value:padEditor.text}", "{var:pad_input}" ] }
+      }],
+      "type": "view",
+      "layout": "border",
+      "padding": 12,
+      "spacing": 10,
+      "components": [
+        {
+          "constraints": { "region": "centre" },
+          "type": "view",
+          "layout": "flex",
+          "rows": 1,
+          "cols": 2,
+          "spacing": 8,
+          "components": [
+            {
+              "constraints": { "grid": { "row": 0, "col": 0, "colweight": 0.62 } },
+              "id": "padEditor",
+              "type": "textarea",
+              "text": "{var:pad_text}",
+              "focus": true,
+              "background": "card",
+              "font": { "size": 15, "monospaced": true },
+              "textinsets": { "horizontal": 12, "vertical": 12 },
+              "disableallsubstitutions": true,
+              "events": [{
+                "triggers": "changed",
+                "action": { "type": "script", "src": "scripts/pad", "args": "{value:self.text}" }
+              }]
+            },
+            {
+              "constraints": { "grid": { "row": 0, "col": 1, "colweight": 0.38 } },
+              "id": "padResults",
+              "type": "textarea",
+              "text": "",
+              "editable": false,
+              "selectable": true,
+              "background": "card",
+              "colour": "controlAccentColor",
+              "font": { "size": 15, "monospaced": true },
+              "textinsets": { "horizontal": 12, "vertical": 12 }
+            }
+          ]
+        },
+        {
+          "constraints": { "region": "bottom" },
+          "type": "view",
+          "layout": "border",
+          "spacing": 12,
+          "components": [
+            {
+              "constraints": { "region": "left", "position": "centre" },
+              "id": "padActionsButton",
+              "type": "button",
+              "text": "Actions ⌘K",
+              "bordered": false,
+              "tooltip": "Copy total, results or lines; clear the scratchpad",
+              "events": [{
+                "triggers": "actioned",
+                "action": { "type": "json", "src": "components/actions_menu.json" }
+              }]
+            },
+            { "constraints": { "region": "centre", "position": "centre", "stretch": "horizontal" },
+              "type": "label", "text": "⌘↩ Copy total & close   esc Close",
+              "linebreak": "truncatetail", "colour": "tertiaryLabelColor" },
+            {
+              "constraints": { "region": "right" },
+              "type": "view",
+              "layout": "inline",
+              "spacing": 8,
+              "components": [
+                { "constraints": { "position": "centre" }, "type": "label", "text": "Total",
+                  "colour": "secondaryLabelColor" },
+                { "constraints": { "position": "centre", "size": { "width": 200 } },
+                  "id": "padTotal", "type": "label", "text": "—", "selectable": true,
+                  "textalign": "right", "linebreak": "truncatehead",
+                  "font": { "size": 20, "weight": "semibold" } }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,6 @@
+#!/bin/zsh --no-rcs
+# Alfred UI action: recalculate the scratchpad. $1 is the editor text, $2
+# optional text to add below it (from the Universal Action). The binary sits
+# in the workflow root, one level above this .alfredui package (the working
+# directory Alfred UI scripts run in).
+exec ../soulvercalc --pad "${1:-}" "${2:-}"

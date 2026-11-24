@@ -1,0 +1,16 @@
+{
+  "popupmenu": {
+    "src": "padActionsButton",
+    "menu": [
+      { "text": "Copy Total", "action": { "type": "json", "src": { "copy": { "src": "{var:pad_total}" } } } },
+      { "text": "Copy Results", "action": { "type": "json", "src": { "copy": { "src": "{var:pad_results}" } } } },
+      { "text": "Copy Lines with Results   ⌘⇧C", "action": { "type": "json", "src": { "copy": { "src": "{var:pad_lines}" } } } },
+      { "text": "Copy Total and Close   ⌘↩", "action": { "type": "json", "src": { "finish": { "args": "{var:pad_total}" } } } },
+      { "type": "separator" },
+      { "text": "Clear Scratchpad", "action": [
+          { "type": "json", "src": { "update": { "ids": { "padEditor": { "text": "" } } } } },
+          { "type": "script", "src": "scripts/pad", "args": "" }
+        ] }
+    ]
+  }
+}

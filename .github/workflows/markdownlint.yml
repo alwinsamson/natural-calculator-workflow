@@ -1,0 +1,25 @@
+name: Markdown
+
+on:
+  pull_request:
+    paths:
+      - "**/*.md"
+      - ".markdownlint.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "**/*.md"
+      - ".markdownlint.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DavidAnson/markdownlint-cli2-action@v19
+        with:
+          globs: "**/*.md"

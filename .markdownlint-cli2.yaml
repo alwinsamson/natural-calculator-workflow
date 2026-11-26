@@ -1,0 +1,5 @@
+# Alfred renders this file in its workflow readme pane, which needs <kbd>.
+# .build/ holds downloaded dependencies.
+ignores:
+  - assets/workflow_readme.md
+  - .build/**

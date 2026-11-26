@@ -8,7 +8,7 @@
 #                                                                          #
 # START DATE: 11/21/2026                                                   #
 #                                                                          #
-# LAST UPDATE: 11/23/2026                                                  #
+# LAST UPDATE: 11/26/2026                                                  #
 #                                                                          #
 #--------------------------------------------------------------------------#
 # OVERVIEW:                                                                #
@@ -149,7 +149,7 @@ make_info_plist()
           category: "Productivity",
           webaddress: "https://alwinsamson.com",
           variablesdontexport: [],
-          version: "1.0",
+          version: "1.1",
           disabled: false,
           readme: $readme,
           userconfigurationconfig: [

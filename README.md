@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/alwinsamson/natural-calculator-workflow">
-    <img src="docs/assets/brand/icon.webp" alt="Natural Calculator icon" width="112">
+    <img src="docs/assets/brand/icon.webp" alt="Natural Calculator icon" width="185">
   </a>
 </p>
 
